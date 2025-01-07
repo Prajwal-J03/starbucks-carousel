@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Starbucks Carousel</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="../dist/output.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <style>
+            body{
+                padding: 0;
+                margin: 0;
+                height: 100vh;
+                background-image: linear-gradient(135deg, #ff869a 0%, #f0cccc 100%);
+                position: relative;
+            }
+            .old-standard-tt-regular {
+                font-family: "Old Standard TT", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .old-standard-tt-bold {
+                font-family: "Old Standard TT", serif;
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            .old-standard-tt-regular-italic {
+                font-family: "Old Standard TT", serif;
+                font-weight: 400;
+                font-style: italic;
+            }
+            .image-bg{
+                border: 3px solid white;
+            }
+
+            .title{
+                max-width: 70%;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="absolute top-4 w-[95%] h-[5%] left-1/2 transform -translate-x-1/2 flex items-center">
+            <img src="./assets/logo.png" width="50px" alt="logo"/>
+            <div class="w-1/5 mx-auto flex items-center justify-around text-gray-900 font-semibold">
+                <nav class="hover:text-black hover:underline">Home</nav>
+                <nav class="hover:underline">About</nav>
+                <nav class="hover:underline">Contact</nav>
+            </div>
+        </div>
+        <div class="h-full flex items-center justify-around">
+            <div class="w-1/2 h-full flex flex-col items-start justify-around pl-16 py-52">
+                <h1 class="text-6xl font-thin old-standard-tt-regular title">Gingerbread Frappuccino</h1>
+                <h3 class="text-3xl font-thin old-standard-tt-regular price">$5.99</h3>
+                <p class="text-justify description">Get your festive cheer on with our Gingerbread Frappuccino. Sweet and delicately spicy gingerbread flavors blended with milk, and smooth coffee, topped with whipped gingerbread topping sprinkled with a spice blend that tastes just like the holidays.</p>    
+                <button class="bg-green-600 py-3 px-6 text-white rounded-3xl hover:shadow-md  relative active:top-1">Add to Cart</button>            
+            </div>
+            <div class="w-1/2 h-full flex items-center justify-center relative">
+                <img src="./assets/a.png" alt="flavors" id="display-img">
+                <div class="absolute right-20 top-1/2 transform -translate-y-1/2">
+                    <img src="./assets/a.png" alt="flavors-a" width="150px" onclick="display(this)" class="image-bg" data-src="assets/a.png">
+                    <img src="./assets/b.png" alt="flavors-b" width="150px" onclick="display(this)" data-src="assets/b.png">
+                    <img src="./assets/c.png" alt="flavors-c" width="150px" onclick="display(this)" data-src="assets/c.png">
+                    <img src="./assets/d.png" alt="flavors-d" width="150px" onclick="display(this)" data-src="assets/d.png">
+                </div>
+            </div>
+        </div>
+        <script>
+            const image=document.querySelector("#display-img");
+            const title=document.querySelector(".title");
+            const price=document.querySelector(".price");
+            const description=document.querySelector(".description");
+
+            const details={
+                "assets/a.png":{
+                    "title":"Gingerbread Frappuccino",
+                    "price":"$5.99",
+                    "description":"Get your festive cheer on with our Gingerbread Frappuccino. Sweet and delicately spicy gingerbread flavors blended with milk, and smooth coffee, topped with whipped gingerbread topping sprinkled with a spice blend that tastes just like the holidays."
+                },
+                "assets/b.png":{
+                    "title":"Toffee Nut Crunch Frappuccino",
+                    "price":"$5.00",
+                    "description":"Delight your senses with our Toffee Nut Frappuccino. A perfect blend of milk, coffee, heartwarming flavors of buttery toffee and the warmth of toasted nuts. Topped with whipped toffee nut topping and graham crackers."
+                },
+                "assets/c.png":{
+                    "title":"Crunchy Red Hat Mocha Frappuccino",
+                    "price":"$6.00",
+                    "description":"Almost too cute to drink, our Crunchy Red Hat Mocha Frappuccino is a perfect blend of milk, smooth coffee, decadent mocha, a generous amout of whipped vanilla topping with a whipped chocolate hat and strawberry drizzle, finished with crunchy graham crackers. This beverage is not just a delight for your eyes but also a party in your mouth."
+                },
+                "assets/d.png":{
+                    "title":"Salted Pretzel Caramel Frappuccino",
+                    "price":"$6.99",
+                    "description":"Salted pretzel flavored syrup paired with milk, pretzel topping, and coffee, drizzled with caramel sauce. Topped with whipped vanilla topping, salted pretzels and red cookie pieces."
+                }
+            }
+
+            function display(img){
+
+                const flavorImages=document.querySelectorAll('.image-bg');
+
+                flavorImages.forEach((fI)=>{
+                    fI.classList.remove("image-bg");
+                });
+
+                img.classList.add("image-bg");
+                const imageSrc=img.getAttribute("data-src");
+                image.src=img.src;
+
+
+                title.textContent=details[imageSrc].title;
+                price.textContent=details[imageSrc].price;
+                description.textContent=details[imageSrc].description;
+            }
+        </script>
+    </body>
+</html>
